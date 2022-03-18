@@ -1,0 +1,35 @@
+.page-charts .page-charts__title {
+  display: flex;
+  align-items: center;
+}
+
+.page-charts .page-charts__title h2 {
+  color: #65c8ff;
+  margin-right: 1rem;
+}
+
+.page-charts .page-charts__title h2 span {
+  color: #f3f3f3;
+}
+
+.page-charts .page-charts__title svg {
+  stroke: #65c8ff;
+}
+
+.page-charts .page-charts__title button {
+  background: none;
+  border: none;
+}
+
+.page-charts__report {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.page-charts__report button {
+  background: none;
+  border: none;
+  color: #cf2fef;
+  font-weight: 600;
+  font-size: 0.875rem;
+}

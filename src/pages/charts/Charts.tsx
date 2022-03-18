@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import AreaChart from '../../components/AreaChart/AreaChart';
 import {getChartData} from '../../services/charts';
 import {IChart} from '../../typescript/models/IChart';
+import {ReactComponent as BookmarkIcon} from './bookmark.svg';
 
 import './Charts.css';
 
@@ -26,14 +27,23 @@ export default function Charts() {
   }, [apiData]);
 
   return (
-    <div>
+    <div className="page-charts">
       <div className="container">
-        <div className="row">
+        <div className="row align-items-center">
           <div className="col-6">
-            <h2>Lido: Luna</h2>
+            <div className="page-charts__title">
+              <h2>
+                Lido<span>: Luna</span>
+              </h2>
+              <button>
+                <BookmarkIcon />
+              </button>
+            </div>
           </div>
           <div className="col-6">
-            <button>Report an error</button>
+            <div className="page-charts__report">
+              <button>Report an error</button>
+            </div>
           </div>
         </div>
         <div className="row">
