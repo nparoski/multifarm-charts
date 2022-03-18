@@ -1,0 +1,14 @@
+.area-chart {
+  background-color: #2e3456;
+}
+
+.area-chart .recharts-cartesian-axis-line {
+  stroke: #d0edf2;
+  opacity: 0.1;
+}
+
+.area-chart .recharts-cartesian-axis-tick text {
+  font-size: 0.6875rem; /* 11px */
+  fill: rgba(171, 187, 255, 0.8);
+  font-weight: 500;
+}
