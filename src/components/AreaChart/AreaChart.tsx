@@ -2,7 +2,7 @@ import React from 'react';
 import {Area, CartesianGrid, Tooltip, XAxis, YAxis, AreaChart as RechartsAreaChart} from 'recharts';
 
 interface IProps {
-  data: [{yData: any; xData: any}];
+  data: {yData: any; xData: any}[];
 }
 
 export default function AreaChart({data}: IProps) {
