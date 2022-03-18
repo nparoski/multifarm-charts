@@ -1,5 +1,14 @@
 .area-chart {
   background-color: #2e3456;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.area-chart__title {
+  font-size: 1rem;
+  text-align: center;
+  color: #f3f3f3;
 }
 
 .area-chart .recharts-cartesian-axis-line {
@@ -8,7 +17,7 @@
 }
 
 .area-chart .recharts-cartesian-axis-tick text {
-  font-size: 0.6875rem; /* 11px */
+  font-size: 0.75rem;
   fill: rgba(171, 187, 255, 0.8);
   font-weight: 500;
 }

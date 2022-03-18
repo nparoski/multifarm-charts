@@ -3,6 +3,8 @@ import AreaChart from './components/AreaChart/AreaChart';
 import {getChartData} from './services/charts';
 import {IChart} from './typescript/models/IChart';
 
+import './App.css';
+
 function App() {
   const [apiData, setApiData] = useState<any[]>([]);
   const [chartData, setChartData] = useState<IChart[]>([]);
@@ -28,6 +30,7 @@ function App() {
         <div className="row">
           <div className="col-xl-6">
             <AreaChart
+              title="Asset APR (y)"
               data={[
                 {xData: 0, yData: 0, value: 12},
                 {xData: 1, yData: 1, value: 11},
@@ -46,6 +49,7 @@ function App() {
           </div>
           <div className="col-xl-6">
             <AreaChart
+              title="Asset TVL"
               data={[
                 {xData: 0, yData: 0, value: 1},
                 {xData: 1, yData: 1, value: 1.1},

@@ -12,12 +12,14 @@ import './AreaChart.css';
 
 interface IProps {
   data: {yData: any; xData: any; value: any}[];
+  title: string;
 }
 
-export default function AreaChart({data}: IProps) {
+export default function AreaChart({data, title}: IProps) {
   return (
     <div className="area-chart">
-      <ResponsiveContainer width="100%" height="100%" minWidth={512} minHeight={256}>
+      <h3 className="area-chart__title">{title}</h3>
+      <ResponsiveContainer width="100%" height="100%" minWidth={360} minHeight={256}>
         <RechartsAreaChart data={data} margin={{top: 10, right: 30, left: 0, bottom: 0}}>
           <defs>
             <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
