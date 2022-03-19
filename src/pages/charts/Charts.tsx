@@ -1,28 +1,36 @@
 import React, {useEffect, useState} from 'react';
 
 import AreaChart from '../../components/AreaChart/AreaChart';
-import {getTvl} from '../../services/charts';
-import {IChart} from '../../typescript/models/IChart';
+import {getAssets} from '../../services/charts';
+import {ISelectedFarm} from '../../typescript/models/IChart';
 import {ReactComponent as BookmarkIcon} from './bookmark.svg';
 
 import './Charts.css';
-import {initalTVL, initialAPR} from './constants';
+import {initialAPR} from './constants';
+import transformFarmData from './utils/transformFarmData';
 
 export default function Charts() {
-  const [tvl, setTvl] = useState<IChart[]>([]);
+  const [assets, setAssets] = useState<any[]>([]);
+  const [farms, setFarms] = useState<ISelectedFarm[]>([]);
 
   useEffect(() => {
     (async () => {
-      const res = await getTvl();
+      const res = await getAssets();
       const {data} = await res.json();
 
-      setTvl(data);
+      setAssets(data);
     })();
   }, []);
 
   useEffect(() => {
-    const filteredTvlAssets = tvl?.filter((x: any) => x?.assetId === 'TERRA_Lido__LUNA');
-  }, [tvl]);
+    const filteredAssets = assets?.filter((x: any) => x?.assetId === 'TERRA_Lido__LUNA');
+
+    const farms = filteredAssets.flatMap((x) => {
+      return x.selected_farm;
+    });
+
+    setFarms(farms);
+  }, [assets]);
 
   return (
     <div className="page-charts">
@@ -46,11 +54,17 @@ export default function Charts() {
         </div>
         <div className="row">
           <div className="col-xl-6">
-            <AreaChart title="Asset APR (y)" data={initialAPR} />
+            <AreaChart title="Asset APR (y)" data={initialAPR} unit="u" />
           </div>
-          <div className="col-xl-6">
-            <AreaChart title="Asset TVL" data={initalTVL} />
-          </div>
+          {farms.map((farm) => {
+            const {data, unit} = transformFarmData(farm);
+
+            return (
+              <div className="col-xl-6" key={farm.farmId}>
+                <AreaChart title="Asset TVL" data={data} unit={unit} />;
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

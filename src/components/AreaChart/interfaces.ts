@@ -1,5 +1,5 @@
 export interface IAreaChartData {
-  yData: number | string;
+  yData: number;
   xData: number | string;
-  value: number | string;
+  value: number;
 }
