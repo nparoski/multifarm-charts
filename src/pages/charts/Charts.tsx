@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 
 import AreaChart from '../../components/AreaChart/AreaChart';
 import {getAssets} from '../../services/charts';
-import {ISelectedFarm} from '../../typescript/models/IChart';
+import {IChart, ISelectedFarm} from '../../typescript/models/IChart';
 import {ReactComponent as BookmarkIcon} from './bookmark.svg';
 
 import './Charts.css';
@@ -10,7 +10,7 @@ import {initialAPR} from './constants';
 import transformFarmData from './utils/transformFarmData';
 
 export default function Charts() {
-  const [assets, setAssets] = useState<any[]>([]);
+  const [assets, setAssets] = useState<IChart[]>([]);
   const [farms, setFarms] = useState<ISelectedFarm[]>([]);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function Charts() {
   }, []);
 
   useEffect(() => {
-    const filteredAssets = assets?.filter((x: any) => x?.assetId === 'TERRA_Lido__LUNA');
+    const filteredAssets = assets?.filter((x) => x?.assetId === 'TERRA_Lido__LUNA');
 
     const farms = filteredAssets.flatMap((x) => {
       return x.selected_farm;
@@ -54,7 +54,7 @@ export default function Charts() {
         </div>
         <div className="row">
           <div className="col-xl-6">
-            <AreaChart title="Asset APR (y)" data={initialAPR} unit="u" />
+            <AreaChart title="Asset APR (y)" data={initialAPR} unit="%" />
           </div>
           {farms.map((farm) => {
             const {data, unit} = transformFarmData(farm);
