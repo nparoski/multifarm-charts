@@ -9,9 +9,10 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import './AreaChart.css';
+import {IAreaChartData} from './interfaces';
 
 interface IProps {
-  data: {yData: any; xData: any; value: any}[];
+  data: IAreaChartData[];
   title: string;
 }
 
