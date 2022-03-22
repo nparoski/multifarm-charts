@@ -7,6 +7,7 @@ import {ReactComponent as BookmarkIcon} from './bookmark.svg';
 
 import './Charts.css';
 import {initialAPR} from './constants';
+import transformAPRData from './utils/transformAPRData';
 import transformFarmData from './utils/transformFarmData';
 
 export default function Charts() {
@@ -54,7 +55,7 @@ export default function Charts() {
         </div>
         <div className="row">
           <div className="col-xl-6">
-            <AreaChart title="Asset APR (y)" data={initialAPR} unit="%" />
+            <AreaChart title="Asset APR (y)" data={transformAPRData(initialAPR)} unit="%" />
           </div>
           {farms.map((farm) => {
             const {data, unit} = transformFarmData(farm);
