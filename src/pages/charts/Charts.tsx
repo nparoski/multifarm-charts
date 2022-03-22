@@ -11,27 +11,23 @@ import transformAPRData from './utils/transformAPRData';
 import transformFarmData from './utils/transformFarmData';
 
 export default function Charts() {
-  const [assets, setAssets] = useState<IChart[]>([]);
   const [farms, setFarms] = useState<ISelectedFarm[]>([]);
 
   useEffect(() => {
     (async () => {
       const res = await getAssets();
-      const {data} = await res.json();
 
-      setAssets(data);
+      if (res.ok) {
+        const {data}: {data: IChart[]} = await res.json();
+
+        const filteredAssets = data.filter((x) => x?.assetId === 'TERRA_Lido__LUNA');
+        const farms = filteredAssets.flatMap((x) => {
+          return x.selected_farm;
+        });
+        setFarms(farms);
+      }
     })();
   }, []);
-
-  useEffect(() => {
-    const filteredAssets = assets?.filter((x) => x?.assetId === 'TERRA_Lido__LUNA');
-
-    const farms = filteredAssets.flatMap((x) => {
-      return x.selected_farm;
-    });
-
-    setFarms(farms);
-  }, [assets]);
 
   return (
     <div className="page-charts">
